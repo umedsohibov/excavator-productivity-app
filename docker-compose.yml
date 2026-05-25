@@ -1,0 +1,6 @@
+services:
+  excavator-app:
+    build: .
+    container_name: excavator_productivity_app
+    ports:
+      - "8000:8000"

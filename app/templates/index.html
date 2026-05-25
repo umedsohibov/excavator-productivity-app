@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Расчет производительности экскаватора</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="page">
+    <header class="header">
+        <h1>Расчет производительности карьерного экскаватора</h1>
+        <p>Прототип системы для расчета производительности, КТГ и выполнения производственного плана.</p>
+    </header>
+
+    <main class="layout">
+        <section class="card">
+            <h2>Ввод параметров</h2>
+
+            <h3>Параметры экскаватора</h3>
+            <label>Объем ковша, м³</label>
+            <input id="bucket_volume" type="number" value="1" step="0.01">
+
+            <label>Коэффициент наполнения</label>
+            <input id="bucket_fill_factor" type="number" value="1" step="0.01">
+
+            <label>Время цикла, сек</label>
+            <input id="cycle_time_seconds" type="number" value="30" step="0.01">
+
+            <h3>Режим работы</h3>
+            <label>Часов в смене</label>
+            <input id="shift_hours" type="number" value="8" step="0.01">
+
+            <label>Смен в сутки</label>
+            <input id="shifts_per_day" type="number" value="2" step="1">
+
+            <label>Рабочих дней в году</label>
+            <input id="working_days_per_year" type="number" value="330" step="1">
+
+            <h3>ТО и простои</h3>
+            <label>Межсервисный интервал, ч</label>
+            <input id="service_interval_hours" type="number" value="500" step="0.01">
+
+            <label>Время одного ТО, ч</label>
+            <input id="service_duration_hours" type="number" value="10" step="0.01">
+
+            <label>Аварийные простои, %</label>
+            <input id="emergency_downtime_percent" type="number" value="5" step="0.01">
+
+            <h3>План</h3>
+            <label>Плановый объем добычи, м³/год</label>
+            <input id="annual_plan_volume" type="number" step="1" placeholder="Необязательно">
+
+            <button id="calculate_button">Рассчитать</button>
+
+            <div id="error_box" class="error"></div>
+        </section>
+
+        <section class="card">
+            <h2>Результаты</h2>
+
+            <div class="results">
+                <div>
+                    <span>Производительность в час</span>
+                    <strong id="hourly_productivity">-</strong>
+                </div>
+
+                <div>
+                    <span>Рабочие часы по графику</span>
+                    <strong id="scheduled_work_hours">-</strong>
+                </div>
+
+                <div>
+                    <span>Количество ТО</span>
+                    <strong id="service_count">-</strong>
+                </div>
+
+                <div>
+                    <span>Часы на ТО</span>
+                    <strong id="service_hours">-</strong>
+                </div>
+
+                <div>
+                    <span>Аварийные простои</span>
+                    <strong id="emergency_downtime_hours">-</strong>
+                </div>
+
+                <div>
+                    <span>Чистое рабочее время</span>
+                    <strong id="clean_work_hours">-</strong>
+                </div>
+
+                <div>
+                    <span>КТГ</span>
+                    <strong id="technical_availability">-</strong>
+                </div>
+
+                <div>
+                    <span>Годовая производительность</span>
+                    <strong id="annual_productivity">-</strong>
+                </div>
+
+                <div>
+                    <span>Выполнение плана</span>
+                    <strong id="plan_completion_percent">-</strong>
+                </div>
+            </div>
+
+            <div class="recommendation">
+                <h3>Рекомендация</h3>
+                <p id="recommendation">Введите параметры и выполните расчет.</p>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
